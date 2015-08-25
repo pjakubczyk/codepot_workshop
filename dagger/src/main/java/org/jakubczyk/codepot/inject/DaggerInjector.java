@@ -3,8 +3,7 @@ package org.jakubczyk.codepot.inject;
 
 public class DaggerInjector {
 
-
-    static DaggerComponent component;
+    public static DaggerComponent component;
 
     public static void start(DaggerModule daggerModule) {
         component = DaggerComponent.Initializer
@@ -14,7 +13,6 @@ public class DaggerInjector {
     public static DaggerComponent get() {
         return component;
     }
-
 
 
 }

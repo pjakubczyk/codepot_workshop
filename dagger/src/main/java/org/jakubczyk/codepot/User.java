@@ -7,9 +7,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", fromPackage='" + fromPackage + '\'' +
-                '}';
+        return "name=" + name + " " + "fromPackage=" + fromPackage;
     }
 }

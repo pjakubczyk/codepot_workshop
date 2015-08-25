@@ -30,10 +30,12 @@ public class DaggerActivity extends Activity {
     protected void onResume() {
         super.onResume();
         titleTv.setText(user.toString());
-        showNextUser();
-        showNextUser();
-        showNextUser();
+    }
 
+    void updateUsers(){
+        showNextUser();
+        showNextUser();
+        showNextUser();
     }
 
     void showNextUser() {
