@@ -7,7 +7,7 @@ import org.robolectric.Robolectric
 import org.robolectric.annotation.Config
 import pl.polidea.robospock.RoboSpecification
 
-@Config(manifest = "./app/src/main/AndroidManifest.xml")
+@Config(manifest = "./activity/src/main/AndroidManifest.xml")
 class MainActivitySpecRobolectric extends RoboSpecification {
 
     def "should build the activity"() {
