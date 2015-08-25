@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+apply plugin: 'groovyx.grooid.groovy-android'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "org.jakubczyk.codepot"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.0.0'
+
+    testCompile 'org.codehaus.groovy:groovy:2.4.3:grooid'
+    testCompile 'org.robospock:robospock:0.6.0-rc'
+    testCompile 'cglib:cglib-nodep:3.1'
+}
