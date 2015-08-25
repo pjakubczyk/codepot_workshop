@@ -1,1 +1,1 @@
-include ':activity'
+include ':activity', ":dagger"
