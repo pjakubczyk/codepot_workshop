@@ -1,1 +1,1 @@
-include ':activity', ":dagger", ":version"
+include ':activity', ":dagger", ":version", ":toast"
