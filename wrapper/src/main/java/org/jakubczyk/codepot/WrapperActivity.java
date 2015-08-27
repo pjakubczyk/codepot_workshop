@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import org.jakubczyk.codepot.inject.DaggerComponent;
 import org.jakubczyk.codepot.inject.DaggerInjector;
+import org.jakubczyk.codepot.projection.IMediaProjectionManagerWrapper;
 
 public class WrapperActivity extends Activity {
 
@@ -22,11 +22,9 @@ public class WrapperActivity extends Activity {
     }
 
     void takeVideo() {
-        MediaProjectionManagerWrapper wrapper = DaggerInjector.get().getMediaProjectionManagerWrapper();
+        IMediaProjectionManagerWrapper wrapper = DaggerInjector.get().getMediaProjectionManagerWrapper();
 
-        Intent intent = wrapper.createScreenCaptureIntent();
-
-        startActivityForResult(intent, 456);
+        wrapper.register(this);
     }
 
 }

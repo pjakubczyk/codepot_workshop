@@ -1,6 +1,7 @@
 package org.jakubczyk.codepot.inject;
 
-import org.jakubczyk.codepot.MediaProjectionManagerWrapper;
+import org.jakubczyk.codepot.projection.IMediaProjectionManagerWrapper;
+import org.jakubczyk.codepot.projection.MediaProjectionManagerWrapper;
 
 import javax.inject.Singleton;
 
@@ -20,6 +21,6 @@ public interface DaggerComponent {
         }
     }
 
-    MediaProjectionManagerWrapper getMediaProjectionManagerWrapper();
+    IMediaProjectionManagerWrapper getMediaProjectionManagerWrapper();
 
 }

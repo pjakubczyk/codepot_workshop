@@ -3,6 +3,7 @@ package org.jakubczyk.codepot
 import android.content.Intent
 import org.jakubczyk.codepot.inject.DaggerComponent
 import org.jakubczyk.codepot.inject.DaggerInjector
+import org.jakubczyk.codepot.projection.MediaProjectionManagerWrapper
 import org.robolectric.Robolectric
 import org.robolectric.annotation.Config
 import pl.polidea.robospock.RoboSpecification
@@ -14,7 +15,10 @@ class WrapperActivitySpecRobolectric extends RoboSpecification {
     def "should should start recording"() {
         given:
         def mock = Mock(MediaProjectionManagerWrapper) {
-            createScreenCaptureIntent() >> new Intent("android.intent.action.CHOOSER")
+            register(_) >> { arguments ->
+                def activity = arguments[0]
+                activity.startActivityForResult(new Intent("android.intent.action.CHOOSER"), 345)
+            }
         }
 
         DaggerInjector.component = Mock(DaggerComponent) {
