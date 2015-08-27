@@ -11,64 +11,66 @@ import pl.polidea.robospock.RoboSpecification
 class MainActivitySpecRobolectric extends RoboSpecification {
 
     def "should build the activity"() {
-        given:
+        given: "create activity controller"
         def activityController = Robolectric.buildActivity(MainActivity)
 
-        and:
+        and: "get the activity from controller"
         def activity = activityController.get()
 
-        when:
+        when: "make controller call onCreate"
         activityController.create()
 
-        then:
+        then: "check if widget is not empty"
         activity.titleTv
     }
 
     def "should show low value"(){
-        given:
+        given: "create activity controller"
         def activityController = Robolectric.buildActivity(MainActivity)
 
-        and:
+        and: "get the activity from controller"
         def activity = activityController.get()
 
-        and:
+        and: "set conditional value to 2"
         activity.conditionValue = 2
 
-        when:
+        when: "make controller call onCreate and onResume"
         activityController.create().resume()
 
-        then:
+        then: "check if correct text is set"
         activity.titleTv.text =~ "Low"
     }
 
     def "should show high value"(){
-        given:
+        given: "create activity controller"
         def activityController = Robolectric.buildActivity(MainActivity)
 
-        and:
+        and: "get the activity from controller"
         def activity = activityController.get()
 
-        and:
+        and: "set conditional value to 4"
         activity.conditionValue = 4
 
-        when:
+        when: "make controller call onCreate and onResume"
         activityController.create().resume()
 
-        then:
+        then: "check if correct text is set"
         activity.titleTv.text =~ "High"
     }
 
+    // The Intent
+
     def "should show that bundle is empty"() {
-        given:
+        given: "create activity controller with intent and call create"
         def activityController = Robolectric.buildActivity(MainActivity).withIntent(new Intent()).create()
 
-        and:
+        and: "get the activity from controller"
         def activity = activityController.get()
 
-        when:
+        when: "call action"
         activity.processExtras()
 
-        then:
+        then: "check if correct text is set"
         activity.labelTv.text == "Null Bundle"
     }
 
@@ -82,16 +84,16 @@ class MainActivitySpecRobolectric extends RoboSpecification {
         def intent = new Intent()
         intent.putExtras(bundle)
 
-        and:
+        and: "create activity controller with intent and call create"
         def activityController = Robolectric.buildActivity(MainActivity).withIntent(intent).create()
 
-        and:
+        and: "get the activity from controller"
         def activity = activityController.get()
 
-        when:
+        when: "call action"
         activity.processExtras()
 
-        then:
+        then: "check if correct text is set"
         activity.labelTv.text == "Bundle with 2 elements"
     }
 
