@@ -7,30 +7,30 @@ import spock.lang.Specification
 class ToastActivitySpec extends Specification {
 
     def "should assign listener to the label"() {
-        given:
+        given: "create activity"
         def activity = new ToastActivity()
 
-        and:
+        and: "mock the widget"
         activity.labelTv = Mock(TextView)
 
-        when:
+        when: "call action, setListeners()"
         activity.setListeners()
 
-        then:
+        then: "check if listener was added"
         1 * activity.labelTv.setOnClickListener(activity)
     }
 
     def "should show a toast on click event"() {
-        given:
+        given: "create activity"
         def activity = new ToastActivity()
 
-        and:
+        and: "mock the toaster"
         activity.toaster = Mock(Toaster)
 
-        when:
+        when: "call action, onClick()"
         activity.onClick(null)
 
-        then:
+        then: "check if toaster showed text once"
         1 * activity.toaster.show("Clicked!")
     }
 }

@@ -9,33 +9,33 @@ import pl.polidea.robospock.RoboSpecification
 class ToastActivityRobolectricSpec extends RoboSpecification {
 
     def "should assign listener to the label"() {
-        given:
+        given: "create activity controller"
         def activityController = Robolectric.buildActivity(ToastActivity)
 
-        and:
+        and: "get the activity from controller"
         def activity = activityController.get()
 
-        when:
+        when: "make controller call onCreate"
         activityController.create()
 
-        then:
+        then: "check if correct text is set"
         Robolectric.shadowOf(activity.labelTv).getOnClickListener()
     }
 
     def "should show a toast on click event"() {
-        given:
+        given: "create activity controller"
         def activityController = Robolectric.buildActivity(ToastActivity)
 
-        and:
+        and: "get the activity from controller"
         def activity = activityController.get()
 
-        and:
+        and: "make controller call onCreate"
         activityController.create()
 
-        when:
+        when: "call action, click on the label"
         activity.labelTv.performClick()
 
-        then:
+        then: "check if correct text in the Toast is set"
         ShadowToast.textOfLatestToast =~ "Cli"
     }
 }
