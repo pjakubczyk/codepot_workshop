@@ -9,28 +9,30 @@ class DaggerActivitySpecRobolectric extends RoboSpecification {
 
 
     def "should show first user"() {
-        given:
+        given: "create activity controller"
         def controller = Robolectric.buildActivity(DaggerActivity)
 
+        and: "get the activity from controller"
         def activity = controller.get()
 
-        when:
+        when: "make controller run create() resume()"
         controller.create().resume()
 
-        then:
+        then: "check if correct text is set"
         activity.titleTv.text =~ "Adam no. 0"
     }
 
-    def "should show third user"(){
-        given:
+    def "should show third user"() {
+        given: "create activity controller"
         def controller = Robolectric.buildActivity(DaggerActivity)
 
+        and: "get the activity from controller"
         def activity = controller.get()
 
-        when:
+        when: "make controller run create() resume()"
         controller.create().resume()
 
-        then:
+        then: "check if correct text is set after thrid run"
         activity.labelTv.text =~ "Adam no. 3"
     }
 }
